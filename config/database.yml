@@ -1,0 +1,30 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  timeout: 5000
+  statement_timeout: 200
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  host: <%= Rails.application.credentials.development.dig(:database, :HOST) %>
+  database: <%= Rails.application.credentials.development.dig(:database, :NAME) %>
+  username: <%= Rails.application.credentials.development.dig(:database, :USER) %>
+  password: <%= Rails.application.credentials.development.dig(:database, :PWD) %>
+  port: <%= Rails.application.credentials.development.dig(:database, :PORT) %>
+
+test:
+  <<: *default
+  host: <%= Rails.application.credentials.development.dig(:database, :HOST) %>
+  database: <%= Rails.application.credentials.test.dig(:database, :NAME) %>
+  username: <%= Rails.application.credentials.test.dig(:database, :USER) %>
+  password: <%= Rails.application.credentials.test.dig(:database, :PWD) %>
+  port: <%= Rails.application.credentials.test.dig(:database, :PORT) %>
+
+production:
+  <<: *default
+  host: <%= Rails.application.credentials.development.dig(:database, :HOST) %>
+  database: <%= Rails.application.credentials.production.dig(:database, :NAME) %>
+  username: <%= Rails.application.credentials.production.dig(:database, :USER) %>
+  password: <%= Rails.application.credentials.production.dig(:database, :PWD) %>
+  port: <%= Rails.application.credentials.production.dig(:database, :PORT) %>
