@@ -7,7 +7,6 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: db_rails
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
@@ -22,6 +21,7 @@ services:
     stdin_open: true
     environment:
       - RAILS_ENV=development
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
     ports:
       - "3000:3000"
     volumes:

@@ -1,17 +1,21 @@
-FROM ruby:3.3.0-alpine
+FROM ruby:3.3.0
 
-WORKDIR /app
+RUN apt update && \
+    apt install -y \
+    build-essential patch ruby-dev tzdata \
+    libpq-dev postgresql-contrib vim \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN apk update && apk add --no-cache build-base postgresql-dev tzdata
+WORKDIR /usr/src/app
 
 COPY Gemfile Gemfile.lock ./
 
-RUN gem install bundler && bundle install --without test
+RUN gem install bundler && bundle install
 
 COPY . .
 
 EXPOSE 3000
 
-RUN rm -f tmp/pids/server.pid
+RUN rm -f ./tmp/pids/server.pid
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
