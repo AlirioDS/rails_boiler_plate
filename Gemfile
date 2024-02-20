@@ -2,7 +2,9 @@ source "https://rubygems.org"
 
 ruby "3.3.0"
 
+gem "pundit", "~> 2.3", ">= 2.3.1"
 gem "bootsnap", require: false
+gem "devise", "~> 4.9", ">= 4.9.3"
 gem "importmap-rails", "2.0.1"
 gem "jbuilder", "2.11.5" 
 gem "pg", "1.5.4"
