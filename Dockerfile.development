@@ -1,8 +1,9 @@
 FROM ruby:3.3.0
 
-RUN apt update && \
+
+RUN apt update -qq && \
     apt install -y \
-    build-essential patch ruby-dev tzdata \
+    build-essential patch ruby-dev tzdata\
     libpq-dev postgresql-contrib vim \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -13,10 +14,10 @@ COPY Gemfile* ./
 
 RUN gem install bundler && bundle install
 
+RUN gem install foreman
+
 COPY . /app
 
 EXPOSE 3000
 
-RUN rm -f ./tmp/pids/server.pid
-
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD bash -c "rm -f tmp/pids/server.pid && foreman start -f Procfile.dev"
