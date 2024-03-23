@@ -1,6 +1,5 @@
 FROM ruby:3.3.0
 
-
 RUN apt update -qq && \
     apt install -y \
     build-essential patch ruby-dev tzdata\
