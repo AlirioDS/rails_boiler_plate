@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
-    sessions: 'users/sessions'
-  } do
-    delete 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
+  root to: redirect('/dashboard')
+  
+  devise_for :users, skip: [:sessions]
+
+  devise_scope :user do
+    # sessions
+    get 'sign_in', to: 'users/sessions#new', as: :new_user_session
+    post 'sign_in', to: 'users/sessions#create', as: :user_session
+    delete 'sign_out', to: 'users/sessions#destroy', as: :destroy_user_session
   end
 
-  get '/', to: 'dashboard#index', as: :dashboard
+  get '/dashboard', to: 'dashboard#index', as: :dashboard
 end
