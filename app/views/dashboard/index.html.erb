@@ -1,0 +1,16 @@
+<div class="grid grid-cols-4">
+  <div class="bg-white p-4 shadow">
+    <div class="flex">
+      <div class="flex-none">
+        <i class="fa-regular fa-star fa-lg"></i>
+      </div>
+      <div class="flex-grow pl-1">
+        <h2 class="text-lg font-semibold">Una Empresa cualquiera</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-span-3 bg-white p-4 shadow">
+    Datos basicos y buscadores
+  </div>
+  <%= button_to "logout", destroy_user_session_path, method: :delete %>
+</div>

@@ -18,7 +18,7 @@ gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 group :development, :test do
-  gem "debug", platforms: %i[ mri windows ]
+  gem 'debug', '~> 1.9', '>= 1.9.1'
   gem "hotwire-livereload", "~> 1.3", ">= 1.3.1"
 end
 
