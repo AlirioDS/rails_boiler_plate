@@ -13,5 +13,6 @@
     Datos basicos y buscadores
   </div>
   <%= current_user.email %>
+  <%= current_user.role.name %>
   <%= button_to "logout", destroy_user_session_path, method: :delete %>
 </div>
