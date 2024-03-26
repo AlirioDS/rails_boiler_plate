@@ -3,6 +3,10 @@ default: &default
   encoding: unicode
   timeout: 5000
   statement_timeout: 200
+  # host: localhost
+  # usename: aliriods
+  # password: postgres
+  # database: bd_template_dev
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
@@ -13,7 +17,7 @@ development:
   password: <%= Rails.application.credentials.development.dig(:database, :PWD) %>
   port: <%= Rails.application.credentials.development.dig(:database, :PORT) %>
 
-test:
+# test:
   <<: *default
   host: <%= Rails.application.credentials.development.dig(:database, :HOST) %>
   database: <%= Rails.application.credentials.test.dig(:database, :NAME) %>
@@ -21,7 +25,7 @@ test:
   password: <%= Rails.application.credentials.test.dig(:database, :PWD) %>
   port: <%= Rails.application.credentials.test.dig(:database, :PORT) %>
 
-production:
+# production:
   <<: *default
   host: <%= Rails.application.credentials.development.dig(:database, :HOST) %>
   database: <%= Rails.application.credentials.production.dig(:database, :NAME) %>
