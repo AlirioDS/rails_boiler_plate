@@ -38,6 +38,11 @@ services:
     environment:
       - RAILS_ENV=development
       - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+      - DATABASE_HOST=db
+      - DATABASE_NAME=rails_boiler_plate_development
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+      - DATABASE_PORT=5432
     ports:
       - "3000:3000"
     volumes:

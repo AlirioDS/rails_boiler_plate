@@ -2,10 +2,12 @@
 
 class Users::SessionsController < Devise::SessionsController
   def create
-    if !current_user
-      redirect_to user_session_path
-    else
-      redirect_to dashboard_path
+    super do |resource|
+      if resource.persisted?
+        redirect_to dashboard_path and return
+      else
+        redirect_to user_session_path and return
+      end
     end
   end
 

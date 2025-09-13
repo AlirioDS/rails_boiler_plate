@@ -11,24 +11,24 @@ default: &default
 
 development:
   <<: *default
-  host: <%= Rails.application.credentials.development.dig(:database, :HOST) %>
-  database: <%= Rails.application.credentials.development.dig(:database, :NAME) %>
-  username: <%= Rails.application.credentials.development.dig(:database, :USER) %>
-  password: <%= Rails.application.credentials.development.dig(:database, :PWD) %>
-  port: <%= Rails.application.credentials.development.dig(:database, :PORT) %>
+  host: <%= ENV.fetch('DATABASE_HOST', 'localhost') %>
+  database: <%= ENV.fetch('DATABASE_NAME', 'rails_boiler_plate_development') %>
+  username: <%= ENV.fetch('DATABASE_USER', 'postgres') %>
+  password: <%= ENV.fetch('DATABASE_PASSWORD', 'postgres') %>
+  port: <%= ENV.fetch('DATABASE_PORT', 5432) %>
 
-# test:
+test:
   <<: *default
-  host: <%= Rails.application.credentials.development.dig(:database, :HOST) %>
-  database: <%= Rails.application.credentials.test.dig(:database, :NAME) %>
-  username: <%= Rails.application.credentials.test.dig(:database, :USER) %>
-  password: <%= Rails.application.credentials.test.dig(:database, :PWD) %>
-  port: <%= Rails.application.credentials.test.dig(:database, :PORT) %>
+  host: <%= ENV.fetch('DATABASE_HOST', 'localhost') %>
+  database: <%= ENV.fetch('DATABASE_NAME', 'rails_boiler_plate_test') %>
+  username: <%= ENV.fetch('DATABASE_USER', 'postgres') %>
+  password: <%= ENV.fetch('DATABASE_PASSWORD', 'postgres') %>
+  port: <%= ENV.fetch('DATABASE_PORT', 5432) %>
 
-# production:
+production:
   <<: *default
-  host: <%= Rails.application.credentials.development.dig(:database, :HOST) %>
-  database: <%= Rails.application.credentials.production.dig(:database, :NAME) %>
-  username: <%= Rails.application.credentials.production.dig(:database, :USER) %>
-  password: <%= Rails.application.credentials.production.dig(:database, :PWD) %>
-  port: <%= Rails.application.credentials.production.dig(:database, :PORT) %>
+  host: <%= ENV.fetch('DATABASE_HOST', 'localhost') %>
+  database: <%= ENV.fetch('DATABASE_NAME', 'rails_boiler_plate_production') %>
+  username: <%= ENV.fetch('DATABASE_USER', 'postgres') %>
+  password: <%= ENV.fetch('DATABASE_PASSWORD', '') %>
+  port: <%= ENV.fetch('DATABASE_PORT', 5432) %>
